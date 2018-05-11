@@ -10,14 +10,7 @@ class Count extends Component {
         counterValue: 0
     }
 
-    incrementCounter = (incrementValue=1) =>{
-        let newCounterValue = this.state.counterValue + incrementValue;
-        this.setState({counterValue:newCounterValue})
-    }
-    decrementCounter = (decrementCounterValue=1) =>{
-        let newCounterValue = this.state.counterValue - decrementCounterValue;
-        this.setState({counterValue:newCounterValue})
-    }
+
    
 
     render() {
@@ -27,7 +20,9 @@ class Count extends Component {
                 <CounterAction clicked={this.props.incrementCounter} title="increment"/>
                 <CounterAction clicked={this.props.decrementCounter} title="decrement"/>  
                 <CounterAction clicked={this.props.addByFive} title="Add 5"/>
-                <CounterAction clicked={this.props.subtractbyFive} title="Sub 5"/>       
+                <CounterAction clicked={this.props.subtractbyFive} title="Sub 5"/> 
+                <CounterAction clicked={this.props.takeSnapshot} title="Take Snap Shot"/>
+                <CounterAction clicked={()=>{console.log(this.props.snapshots)}} title="Show Snap Shots"/>     
             </div>
         )
     }
@@ -35,7 +30,8 @@ class Count extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        counter: state.counter
+        counter: state.counter,
+        snapshots: state.snapshots
     }
 }
 
@@ -45,6 +41,7 @@ const mapDispatchToProps = (dispatch) => {
         decrementCounter: () => dispatch({type:'DECREMENT'}),
         addByFive: () => dispatch({type:'INCREMENT', value: 5}),
         subtractbyFive: () => dispatch({type:'DECREMENT', value:5}),
+        takeSnapshot: () => dispatch({type:'TAKE_SNAPSHOT'})
     }
 }
 
