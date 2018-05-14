@@ -1,9 +1,8 @@
 const initalState = {
-    counter: 0,
-    snapshots:[]
+    counter: 0
 }
 
-const rootReducer = (state = initalState, action) => {
+const counterReducer = (state = initalState, action) => {
    
     if (action.type === 'INCREMENT') {
         // console.log(action);
@@ -21,14 +20,7 @@ const rootReducer = (state = initalState, action) => {
         }
     }
 
-    if (action.type === 'TAKE_SNAPSHOT') {
-        return {
-            ...state,
-            snapshots: state.snapshots.concat(state.counter)
-        }
-    }
-
     return state
 }
 
-export default rootReducer;
+export default counterReducer;

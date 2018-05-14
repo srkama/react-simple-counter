@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 // import devToolsEnhancer from 'remote-redux-devtools';
 
-import RootReducer from './reducers';
+import snapshotReducer from './snapshot-reducers';
+import counterReducer from './counter-reducers';
+
+const RootReducer=combineReducers({
+    snapshot:snapshotReducer, 
+    counter:counterReducer});
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
