@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 // import devToolsEnhancer from 'remote-redux-devtools';
 
@@ -25,10 +25,12 @@ const logger = store => {
     }
 }
 
+const customEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
  RootReducer, /* preloadedState, */
- applyMiddleware(logger),
+ customEnhancers(applyMiddleware(logger)),
 );
 /* eslint-enable */
 console.log(store)
